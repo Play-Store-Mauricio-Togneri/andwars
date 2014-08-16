@@ -3,6 +3,8 @@ AndWars
 
 AndWars is a turn-based strategy game of territorial conquest and unit control where the goal is to defeat your enemies. The game is based on the classic Palm strategy game [Palmwars](http://leggettnet.org.uk/palmstuff/palmwars.html).
 
+[![Get it on Google Play](http://mauriciotogneri.com/images/badge.png)](https://play.google.com/store/apps/details?id=com.mauriciotogneri.andwars)
+
 Rules:
 ------
 * Maps are divided into interconnected *stars*. Each star can hold up to 9 units of the same player.
