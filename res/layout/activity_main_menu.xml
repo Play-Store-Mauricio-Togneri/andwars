@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="20dp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@layout/bolder_label"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/map_previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@layout/background_button"
+            android:contentDescription="@string/image_description"
+            android:padding="10dp"
+            android:src="@android:drawable/ic_media_rew" />
+
+        <TextView
+            android:id="@+id/map_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@layout/bolder_label"
+            android:gravity="center"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/map_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@layout/background_button"
+            android:contentDescription="@string/image_description"
+            android:padding="10dp"
+            android:src="@android:drawable/ic_media_ff" />
+        
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/map_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        android:background="#000000"
+        android:padding="10dp" />
+
+    <Button
+        android:id="@+id/mainmenu_button_start_game"
+        style="@style/select_units_button"
+        android:layout_width="match_parent"
+        android:layout_margin="0dp"
+        android:text="@string/main_menu_button_start" />
+
+</LinearLayout>
