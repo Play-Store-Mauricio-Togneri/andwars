@@ -1,7 +1,7 @@
 AndWars
 =======
 
-AndWars is a turn-based strategy game of territorial conquest and unit control where the goal is to defeat your enemies. The game is based on the classic Palm strategy game [`Palmwars`](http://leggettnet.org.uk/palmstuff/palmwars.html).
+AndWars is a turn-based strategy game of territorial conquest and unit control where the goal is to defeat your enemies. The game is based on the classic Palm strategy game [Palmwars](http://leggettnet.org.uk/palmstuff/palmwars.html).
 
 Rules:
 ------
@@ -13,4 +13,4 @@ Rules:
 
 Currently there is only one game mode: *Player vs. Computer*. There will be a multiplayer mode in the future.
 
-If you have any question or you want to submit your own map, don't hesitate to access to our [`Community`] (https://plus.google.com/communities/116804771459012895746).
+If you have any question or you want to submit your own map, don't hesitate to access to our [Community] (https://plus.google.com/communities/116804771459012895746).
