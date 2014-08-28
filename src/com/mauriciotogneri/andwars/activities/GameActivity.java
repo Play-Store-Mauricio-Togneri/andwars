@@ -5,7 +5,6 @@ import java.util.List;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,6 +17,7 @@ import android.widget.TextView;
 import com.google.android.gms.analytics.Tracker;
 import com.mauriciotogneri.andwars.R;
 import com.mauriciotogneri.andwars.objects.Game;
+import com.mauriciotogneri.andwars.objects.Game.GameMode;
 import com.mauriciotogneri.andwars.objects.Game.GameResult;
 import com.mauriciotogneri.andwars.objects.Map;
 import com.mauriciotogneri.andwars.objects.players.Player;
@@ -28,42 +28,42 @@ import com.mauriciotogneri.andwars.ui.renders.GameRenderer;
 public class GameActivity extends Activity
 {
 	private Game game;
-	
+
 	private MenuItem buttonRestartGame;
 	private MenuItem buttonPassTurn;
-	
-	public static final String PARAMETER_PLAYER_NAME = "player_name";
+
+	public static final String PARAMETER_GAME_MODE = "game_mode";
 	public static final String PARAMETER_MAP_NAME = "map_name";
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		setTitle("  " + getString(R.string.title_bar_initializing));
-
+		
 		GameRenderer gameRenderer = new GameRenderer(this);
 		addContentView(gameRenderer, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
-		String playerName = getIntent().getStringExtra(GameActivity.PARAMETER_PLAYER_NAME);
+		GameMode mode = (GameMode)getIntent().getSerializableExtra(GameActivity.PARAMETER_GAME_MODE);
 		String mapName = getIntent().getStringExtra(GameActivity.PARAMETER_MAP_NAME);
-		
-		this.game = createGame(playerName, mapName);
-	}
 
+		this.game = createGame(mode, mapName);
+	}
+	
 	public void enableButtons(boolean enabled)
 	{
 		if (this.buttonPassTurn != null)
 		{
 			this.buttonPassTurn.setEnabled(enabled);
 		}
-		
+
 		if (this.buttonRestartGame != null)
 		{
 			this.buttonRestartGame.setEnabled(enabled);
 		}
 	}
-	
+
 	private void enableRestart()
 	{
 		if (this.buttonRestartGame != null)
@@ -71,52 +71,53 @@ public class GameActivity extends Activity
 			this.buttonRestartGame.setEnabled(true);
 		}
 	}
-	
-	public void showEndMessage(GameResult result)
+
+	public void showEndMessage(GameResult result, int color)
 	{
 		enableRestart();
-
+		
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setCancelable(true);
-
+		
 		LayoutInflater inflater = LayoutInflater.from(this);
 		View layout = inflater.inflate(R.layout.dialog_game_finished, null);
-		
+
 		TextView message = (TextView)layout.findViewById(R.id.message);
 		message.setText(result.getTextId());
-		
-		builder.setView(layout);
+		message.setTextColor(color);
 
+		builder.setView(layout);
+		
 		AlertDialog dialog = builder.create();
 		dialog.setCanceledOnTouchOutside(true);
 		dialog.show();
 	}
-	
+
 	public void updateTurnNumber(int turn)
 	{
 		setTitle("  " + getString(R.string.title_bar_turn) + "  " + turn);
 	}
-	
+
 	public void setGameRenderer(GameRenderer gameRenderer)
 	{
 		this.game.setGameRenderer(gameRenderer);
-		
+
 		if (!this.game.isStarted())
 		{
 			this.game.start();
 		}
 	}
-
+	
 	public void onClick(int x, int y)
 	{
 		this.game.onClick(x, y);
 	}
-	
+
 	private void passTurn()
 	{
 		this.game.passTurn();
 	}
-	
+
 	private void confirmCloseGame()
 	{
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -124,7 +125,7 @@ public class GameActivity extends Activity
 		builder.setCancelable(false);
 		builder.setIcon(android.R.drawable.ic_menu_info_details);
 		builder.setMessage(R.string.confirmation_close_message);
-
+		
 		builder.setPositiveButton(R.string.button_accept, new DialogInterface.OnClickListener()
 		{
 			@Override
@@ -133,13 +134,13 @@ public class GameActivity extends Activity
 				finish();
 			}
 		});
-
-		builder.setNegativeButton(R.string.button_cancel, null);
 		
+		builder.setNegativeButton(R.string.button_cancel, null);
+
 		AlertDialog dialog = builder.create();
 		dialog.show();
 	}
-
+	
 	private void confirmRestartGame()
 	{
 		if ((this.game != null) && (this.game.isFinished()))
@@ -148,13 +149,13 @@ public class GameActivity extends Activity
 		}
 		else
 		{
-
+			
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setTitle(R.string.confirmation_restart_title);
 			builder.setCancelable(false);
 			builder.setIcon(android.R.drawable.ic_menu_info_details);
 			builder.setMessage(R.string.confirmation_restart_message);
-
+			
 			builder.setPositiveButton(R.string.button_accept, new DialogInterface.OnClickListener()
 			{
 				@Override
@@ -163,20 +164,20 @@ public class GameActivity extends Activity
 					restartGame();
 				}
 			});
-
+			
 			builder.setNegativeButton(R.string.button_cancel, null);
-
+			
 			AlertDialog dialog = builder.create();
 			dialog.show();
 		}
 	}
-	
+
 	private void restartGame()
 	{
 		setTitle("  " + getString(R.string.title_bar_initializing));
 		this.game.restart();
 	}
-
+	
 	@Override
 	public void onBackPressed()
 	{
@@ -190,27 +191,27 @@ public class GameActivity extends Activity
 			confirmCloseGame();
 		}
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.game_menu, menu);
-		
+
 		return super.onCreateOptionsMenu(menu);
 	}
-
+	
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu)
 	{
 		this.buttonRestartGame = menu.getItem(1);
 		this.buttonPassTurn = menu.getItem(2);
-
-		enableButtons(false);
 		
+		enableButtons(false);
+
 		return super.onPrepareOptionsMenu(menu);
 	}
-
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -229,35 +230,45 @@ public class GameActivity extends Activity
 				return super.onOptionsItemSelected(item);
 		}
 	}
-
+	
 	private void showHelp()
 	{
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle(R.string.dialog_help_game);
 		builder.setIcon(android.R.drawable.ic_menu_help);
 		builder.setCancelable(true);
-
+		
 		LayoutInflater inflater = LayoutInflater.from(this);
 		View layout = inflater.inflate(R.layout.dialog_help_game, null);
 		builder.setView(layout);
-		
+
 		builder.setPositiveButton(R.string.button_accept, null);
-		
+
 		AlertDialog dialog = builder.create();
 		dialog.show();
 	}
-	
-	private Game createGame(String playerName, String mapName)
+
+	private Game createGame(GameMode mode, String mapName)
 	{
 		AndWars application = (AndWars)getApplication();
 		Tracker tracker = application.getTracker();
-		
-		Map map = new Map(mapName, this);
 
-		List<Player> players = new ArrayList<Player>();
-		players.add(new PlayerHuman(1, playerName, Color.argb(255, 50, 50, 255), true, this));
-		players.add(new PlayerComputer(2, "Computer", Color.argb(255, 255, 0, 0), true, map));
+		Map map = new Map(mapName, this);
 		
+		List<Player> players = new ArrayList<Player>();
+		
+		switch (mode)
+		{
+			case VS_COMPUTER:
+				players.add(new PlayerHuman(Player.PLAYER_COLOR_BLUE, true, this));
+				players.add(new PlayerComputer(Player.PLAYER_COLOR_RED, true, map));
+				break;
+			case VS_HUMAN:
+				players.add(new PlayerHuman(Player.PLAYER_COLOR_BLUE, true, this));
+				players.add(new PlayerHuman(Player.PLAYER_COLOR_RED, true, this));
+				break;
+		}
+
 		return new Game(map, players, tracker);
 	}
 }

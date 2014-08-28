@@ -1,5 +1,6 @@
 package com.mauriciotogneri.andwars.objects.players;
 
+import android.graphics.Color;
 import com.mauriciotogneri.andwars.objects.Cell;
 import com.mauriciotogneri.andwars.objects.Game;
 import com.mauriciotogneri.andwars.objects.Game.OnCellSelected;
@@ -9,17 +10,16 @@ import com.mauriciotogneri.andwars.util.ColorUtils;
 
 public abstract class Player implements OnCellSelected
 {
-	public final int id;
-	public final String name;
 	public final int color;
 	public final int borderColor;
 	
 	private final boolean local;
+
+	public static final int PLAYER_COLOR_BLUE = Color.argb(255, 50, 50, 255);
+	public static final int PLAYER_COLOR_RED = Color.argb(255, 255, 0, 0);
 	
-	public Player(int id, String name, int color, boolean local)
+	public Player(int color, boolean local)
 	{
-		this.id = id;
-		this.name = name;
 		this.color = color;
 		this.borderColor = ColorUtils.getDarkColor(color);
 		
@@ -29,6 +29,11 @@ public abstract class Player implements OnCellSelected
 	public void initialize(Game game)
 	{
 		game.addOnCellSelectedListener(this);
+	}
+
+	public boolean isBlue()
+	{
+		return (this.color == Player.PLAYER_COLOR_BLUE);
 	}
 
 	@Override
@@ -43,6 +48,8 @@ public abstract class Player implements OnCellSelected
 
 	public abstract boolean isHuman();
 	
+	public abstract void restart();
+
 	public abstract void passTurn();
 
 	public abstract void selectInitialCell(Initialization initialization);

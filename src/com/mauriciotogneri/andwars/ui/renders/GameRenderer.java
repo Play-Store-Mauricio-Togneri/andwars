@@ -11,41 +11,41 @@ public class GameRenderer extends MapRenderer
 {
 	@NonNull
 	private final GameActivity gameActivity;
-	
+
 	public GameRenderer(@NonNull Context context)
 	{
 		super(context, null);
-
+		
 		this.gameActivity = (GameActivity)context;
 	}
-	
+
 	@Override
 	public void surfaceCreated(SurfaceHolder holder)
 	{
 		super.surfaceCreated(holder);
 		this.gameActivity.setGameRenderer(this);
 	}
-
-	public void showEndMessage(GameResult result)
-	{
-		this.gameActivity.showEndMessage(result);
-	}
 	
+	public void showEndMessage(GameResult result, int color)
+	{
+		this.gameActivity.showEndMessage(result, color);
+	}
+
 	public void lockButtons()
 	{
 		this.gameActivity.enableButtons(false);
 	}
-	
+
 	public void unlockButtons()
 	{
 		this.gameActivity.enableButtons(true);
 	}
-
+	
 	public void updateTurnNumber(int turn)
 	{
 		this.gameActivity.updateTurnNumber(turn);
 	}
-	
+
 	@Override
 	public boolean onTouchEvent(MotionEvent event)
 	{
@@ -57,7 +57,7 @@ public class GameRenderer extends MapRenderer
 				this.gameActivity.onClick(x, y);
 				break;
 		}
-
+		
 		return true;
 	}
 }

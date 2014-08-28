@@ -16,8 +16,8 @@ import com.mauriciotogneri.andwars.states.TurnManager;
 
 public class PlayerHuman extends Player
 {
-	private Initialization initialization;
-	private TurnManager turnManager;
+	private Initialization initialization = null;
+	private TurnManager turnManager = null;
 	private final Context context;
 
 	private Cell selectedSourceCell = null;
@@ -30,9 +30,9 @@ public class PlayerHuman extends Player
 		SELECTING_SOURCE_CELL, SELECTING_TARGET_CELL
 	}
 
-	public PlayerHuman(int id, String name, int color, boolean local, Context context)
+	public PlayerHuman(int color, boolean local, Context context)
 	{
-		super(id, name, color, local);
+		super(color, local);
 
 		this.context = context;
 	}
@@ -73,6 +73,18 @@ public class PlayerHuman extends Player
 	public boolean isHuman()
 	{
 		return true;
+	}
+
+	@Override
+	public void restart()
+	{
+		this.initialization = null;
+		this.turnManager = null;
+
+		this.selectedSourceCell = null;
+		this.selectedTargetCell = null;
+
+		this.state = null;
 	}
 	
 	@Override

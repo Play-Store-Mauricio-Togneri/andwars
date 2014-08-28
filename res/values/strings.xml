@@ -7,9 +7,7 @@
     <string name="button_cancel">Cancel</string>
     
     <string name="image_description"></string>
-    
-    <string name="main_menu_button_start">Start Game</string>
-    
+ 
     <string name="title_bar_initializing">Initializing</string>
     <string name="title_bar_turn">Turn:</string>
     
@@ -49,8 +47,8 @@
     
     <string name="dialog_units_title">Select number of units</string>
     
-    <string name="dialog_game_finished_won">YOU WON</string>
-    <string name="dialog_game_finished_lost">YOU LOST</string>
+    <string name="dialog_game_finished_blue">BLUE WINS</string>
+    <string name="dialog_game_finished_red">RED WINS</string>
     <string name="dialog_game_finished_tie">TIE GAME</string>
     
     <string name="move_units_1">1</string>

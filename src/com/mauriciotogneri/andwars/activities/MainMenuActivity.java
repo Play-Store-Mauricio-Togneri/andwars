@@ -19,13 +19,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.mauriciotogneri.andwars.R;
+import com.mauriciotogneri.andwars.objects.Game.GameMode;
 import com.mauriciotogneri.andwars.objects.Map;
 import com.mauriciotogneri.andwars.ui.renders.MapRenderer;
 import com.mauriciotogneri.andwars.ui.renders.MapRenderer.MapListener;
@@ -71,13 +71,23 @@ public class MainMenuActivity extends Activity implements MapListener
 			}
 		});
 
-		Button startGame = (Button)findViewById(R.id.mainmenu_button_start_game);
-		startGame.setOnClickListener(new OnClickListener()
+		ImageButton startGameComputer = (ImageButton)findViewById(R.id.mainmenu_button_start_game_vs_computer);
+		startGameComputer.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View view)
 			{
-				startGame();
+				startGame(GameMode.VS_COMPUTER);
+			}
+		});
+
+		ImageButton startGameHuman = (ImageButton)findViewById(R.id.mainmenu_button_start_game_vs_human);
+		startGameHuman.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View view)
+			{
+				startGame(GameMode.VS_HUMAN);
 			}
 		});
 		
@@ -173,12 +183,12 @@ public class MainMenuActivity extends Activity implements MapListener
 		}
 	}
 
-	private void startGame()
+	private void startGame(GameMode mode)
 	{
 		Map map = getSelectedMap();
 		
 		Intent intent = new Intent(this, GameActivity.class);
-		intent.putExtra(GameActivity.PARAMETER_PLAYER_NAME, "Player");
+		intent.putExtra(GameActivity.PARAMETER_GAME_MODE, mode);
 		intent.putExtra(GameActivity.PARAMETER_MAP_NAME, map.getPath());
 
 		startActivity(intent);
