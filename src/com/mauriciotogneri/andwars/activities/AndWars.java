@@ -20,6 +20,7 @@ public class AndWars extends Application
 		super.onCreate();
 
 		ACRA.init(this);
+		ACRA.getErrorReporter().putCustomData("PACKAGE_NAME", getPackageName());
 		
 		StrictMode.ThreadPolicy.Builder threadBuilder = new StrictMode.ThreadPolicy.Builder();
 		threadBuilder.detectAll();
