@@ -13,6 +13,9 @@ Rules:
 * At the end of each turn, each star which is linked to 2 or more of the same player's stars will gain an extra unit.
 * The game ends when you defeat all the units of your enemies.
 
-Currently there is only one game mode: *Player vs. Computer*. There will be a multiplayer mode in the future.
+There are two game modes:
+-------------------------
+* Human vs Computer
+* Human vs Human (offline)
 
 If you have any question or you want to submit your own map, don't hesitate to access to our [Community] (https://plus.google.com/communities/116804771459012895746).
