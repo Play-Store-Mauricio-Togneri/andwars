@@ -29,7 +29,7 @@
     <string name="dialog_help_main_menu_text_4">Una vista previa del mapa será mostrada en la pantalla.</string>
     <string name="dialog_help_main_menu_text_5">Una vez elegido el mapa, seleciona el modo de juego:</string>
     <string name="dialog_help_main_menu_text_6">Humano vs. Máquina</string>
-    <string name="dialog_help_main_menu_text_7">Humano vs. Humano</string>
+    <string name="dialog_help_main_menu_text_7">Humano vs. Humano (offline)</string>
     
     <string name="dialog_help_game">Cómo jugar</string>
     <string name="dialog_help_game_text_1">El mapa está compuesto por estrellas interconectadas.</string>

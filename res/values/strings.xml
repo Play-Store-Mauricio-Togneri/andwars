@@ -29,7 +29,7 @@
     <string name="dialog_help_main_menu_text_4">A preview of the map will be shown on the screen.</string>
     <string name="dialog_help_main_menu_text_5">After choosing the map, select the game mode:</string>
     <string name="dialog_help_main_menu_text_6">Human vs. Computer</string>
-    <string name="dialog_help_main_menu_text_7">Human vs. Human</string>
+    <string name="dialog_help_main_menu_text_7">Human vs. Human (offline)</string>
     
     <string name="dialog_help_game">How to Play</string>
     <string name="dialog_help_game_text_1">The map is composed of interconnected stars.</string>

@@ -27,9 +27,9 @@
 	<string name="dialog_help_main_menu_text_2">Utiliser</string>
 	<string name="dialog_help_main_menu_text_3">pour changer la carte.</string>
 	<string name="dialog_help_main_menu_text_4">Une visualisation de la carte va être affichée sur cette écran.</string>
-	<string name="dialog_help_main_menu_text_5">Après avoir sélectionné la carte, cliquer sur le bouton \'Démarrer la Partie\'.</string>
-	<string name="dialog_help_main_menu_text_6">Human vs. Computer</string>
-    <string name="dialog_help_main_menu_text_7">Human vs. Human</string>
+	<string name="dialog_help_main_menu_text_5">Après avoir choisi la carte, sélectionnez le mode de jeu:</string>
+	<string name="dialog_help_main_menu_text_6">Humain vs. Ordinateur</string>
+    <string name="dialog_help_main_menu_text_7">Humain vs. Humain (hors ligne)</string>
 	
 	<string name="dialog_help_game">Comment jouer</string>
 	<string name="dialog_help_game_text_1">La carte est composée d\'étoiles interconnectées.</string>
@@ -49,8 +49,8 @@
 	
 	<string name="dialog_units_title">Sélectionner le nombre d\'unités</string>
 	
-	<string name="dialog_game_finished_blue">VICTOIRE</string>
-	<string name="dialog_game_finished_red">DÉFAITE</string>
+	<string name="dialog_game_finished_blue">BLEU GAGNE</string>
+	<string name="dialog_game_finished_red">ROUGE GAGNE</string>
 	<string name="dialog_game_finished_tie">ÉGALITÉ</string>
 	
 	<string name="move_units_1">1</string>

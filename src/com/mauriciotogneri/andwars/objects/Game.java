@@ -14,6 +14,7 @@ import com.mauriciotogneri.andwars.ui.renders.GameRenderer;
 
 public class Game
 {
+	private final GameMode mode;
 	private final Map map;
 	private final List<Player> players;
 	private GameRenderer gameRenderer;
@@ -36,7 +37,7 @@ public class Game
 	
 	private enum GameAction
 	{
-		START, RESTART, WIN, LOSE, TIE, CLOSE;
+		START, RESTART, CLOSE;
 	}
 
 	public enum GameResult
@@ -56,8 +57,9 @@ public class Game
 		}
 	}
 
-	public Game(Map map, List<Player> players, Tracker tracker)
+	public Game(GameMode mode, Map map, List<Player> players, Tracker tracker)
 	{
+		this.mode = mode;
 		this.map = map;
 		this.players = players;
 
@@ -210,20 +212,16 @@ public class Game
 
 		if (winner.isBlue())
 		{
-			sendHit(GameAction.WIN);
 			this.gameRenderer.showEndMessage(GameResult.BLUE, winner.borderColor);
 		}
 		else
 		{
-			sendHit(GameAction.LOSE);
 			this.gameRenderer.showEndMessage(GameResult.RED, winner.borderColor);
 		}
 	}
 
 	public void gameTie()
 	{
-		sendHit(GameAction.TIE);
-		
 		this.finished = true;
 
 		this.gameRenderer.showEndMessage(GameResult.TIE, Color.BLACK);
@@ -246,7 +244,7 @@ public class Game
 	{
 		final String mapName = this.map.toString();
 
-		Thread thread = new Thread(new Runnable()
+		Thread threadMapName = new Thread(new Runnable()
 		{
 			@Override
 			public void run()
@@ -258,7 +256,21 @@ public class Game
 				Game.this.tracker.send(builder.build());
 			}
 		});
-		thread.start();
+		threadMapName.start();
+		
+		Thread threadGameMode = new Thread(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				EventBuilder builder = new HitBuilders.EventBuilder();
+				builder.setCategory(Game.this.mode.toString());
+				builder.setAction(action.toString());
+
+				Game.this.tracker.send(builder.build());
+			}
+		});
+		threadGameMode.start();
 	}
 
 	public interface OnCellSelected
