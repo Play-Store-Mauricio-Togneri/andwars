@@ -19,30 +19,30 @@ public class PlayerHuman extends Player
 	private Initialization initialization = null;
 	private TurnManager turnManager = null;
 	private final Context context;
-
+	
 	private Cell selectedSourceCell = null;
 	private Cell selectedTargetCell = null;
-
-	private State state = null;
 	
+	private State state = null;
+
 	private enum State
 	{
 		SELECTING_SOURCE_CELL, SELECTING_TARGET_CELL
 	}
-
+	
 	public PlayerHuman(int color, boolean local, Context context)
 	{
 		super(color, local);
-
+		
 		this.context = context;
 	}
-
+	
 	@Override
 	public void selectInitialCell(Initialization initialization)
 	{
 		this.initialization = initialization;
 	}
-
+	
 	@Override
 	public void onCellSelected(Cell cell)
 	{
@@ -68,25 +68,25 @@ public class PlayerHuman extends Player
 			}
 		}
 	}
-	
+
 	@Override
 	public boolean isHuman()
 	{
 		return true;
 	}
-
+	
 	@Override
 	public void restart()
 	{
 		this.initialization = null;
 		this.turnManager = null;
-
+		
 		this.selectedSourceCell = null;
 		this.selectedTargetCell = null;
-
+		
 		this.state = null;
 	}
-	
+
 	@Override
 	public void makeMove(TurnManager turnManager)
 	{
@@ -94,20 +94,20 @@ public class PlayerHuman extends Player
 		clearTurn();
 		this.state = State.SELECTING_SOURCE_CELL;
 	}
-
+	
 	private void selectSourceCell(Cell cell)
 	{
 		if (cell.isOwner(this))
 		{
 			this.selectedSourceCell = cell;
 			cell.setSelected(true);
-			
-			this.state = State.SELECTING_TARGET_CELL;
 
+			this.state = State.SELECTING_TARGET_CELL;
+			
 			this.turnManager.updateMap();
 		}
 	}
-
+	
 	private void selectTargetCell(Cell cell)
 	{
 		if (this.selectedSourceCell != null)
@@ -116,24 +116,24 @@ public class PlayerHuman extends Player
 			{
 				this.selectedSourceCell.setSelected(false);
 				this.selectedSourceCell = null;
-				
+
 				this.state = State.SELECTING_SOURCE_CELL;
-				
+
 				this.turnManager.updateMap();
 			}
 			else if (this.selectedSourceCell.isAdjacent(cell))
 			{
 				this.selectedTargetCell = cell;
-
+				
 				int limitNumberOfUnis = this.selectedSourceCell.getNumberOfUnits();
-
+				
 				if (this.selectedTargetCell.sameOwner(this.selectedSourceCell))
 				{
 					if ((limitNumberOfUnis + this.selectedTargetCell.getNumberOfUnits()) > Cell.MAXIMUM_NUMBER_OF_UNITS)
 					{
 						limitNumberOfUnis = Cell.MAXIMUM_NUMBER_OF_UNITS - this.selectedTargetCell.getNumberOfUnits();
 					}
-					
+
 					if (limitNumberOfUnis > 1)
 					{
 						showDialogMoveUnits(limitNumberOfUnis);
@@ -150,18 +150,18 @@ public class PlayerHuman extends Player
 			}
 		}
 	}
-	
+
 	private void showDialogMoveUnits(int limit)
 	{
 		AlertDialog.Builder builder = new AlertDialog.Builder(this.context);
 		builder.setTitle(R.string.dialog_units_title);
 		builder.setIcon(android.R.drawable.ic_menu_set_as);
 		builder.setCancelable(true);
-
+		
 		LayoutInflater inflater = LayoutInflater.from(this.context);
 		View layout = inflater.inflate(R.layout.dialog_choose_units, null);
 		builder.setView(layout);
-		
+
 		builder.setNegativeButton(R.string.button_cancel, new OnClickListener()
 		{
 			@Override
@@ -170,22 +170,22 @@ public class PlayerHuman extends Player
 				PlayerHuman.this.selectedTargetCell = null;
 			}
 		});
-		
+
 		AlertDialog dialog = builder.create();
 		dialog.show();
-
+		
 		clearDialogButtons(layout, dialog, limit);
 	}
-	
+
 	private void clearDialogButtons(View layout, final AlertDialog dialog, int limit)
 	{
 		for (int i = 1; i < 10; i++)
 		{
 			int resId = this.context.getResources().getIdentifier("units" + i, "id", this.context.getPackageName());
 			Button button = (Button)layout.findViewById(resId);
-			
+
 			final int value = i;
-			
+
 			if (i <= limit)
 			{
 				button.setOnClickListener(new View.OnClickListener()
@@ -204,16 +204,19 @@ public class PlayerHuman extends Player
 			}
 		}
 	}
-
+	
 	private void acceptMove(int numberOfUnits)
 	{
-		Move move = new Move(this.selectedSourceCell, this.selectedTargetCell, numberOfUnits);
-
-		clearTurn();
-		
-		this.turnManager.moveExecuted(move);
+		if ((this.selectedSourceCell != null) && (this.selectedTargetCell != null))
+		{
+			Move move = new Move(this.selectedSourceCell, this.selectedTargetCell, numberOfUnits);
+			
+			clearTurn();
+			
+			this.turnManager.moveExecuted(move);
+		}
 	}
-	
+
 	private void clearSelectedCells()
 	{
 		if (this.selectedSourceCell != null)
@@ -221,22 +224,22 @@ public class PlayerHuman extends Player
 			this.selectedSourceCell.setSelected(false);
 			this.selectedSourceCell = null;
 		}
-
+		
 		if (this.selectedTargetCell != null)
 		{
 			this.selectedTargetCell.setSelected(false);
 			this.selectedTargetCell = null;
 		}
-		
+
 		this.turnManager.updateMap();
 	}
-
+	
 	private void clearTurn()
 	{
 		clearSelectedCells();
 		this.state = null;
 	}
-
+	
 	@Override
 	public void passTurn()
 	{

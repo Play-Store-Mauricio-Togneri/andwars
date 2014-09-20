@@ -18,4 +18,9 @@ Game modes
 * Human vs Computer
 * Human vs Human (offline)
 
+Screenshots
+-----------
+
+![alt tag](http://mauriciotogneri.com/images/screenshot1.jpg)
+
 If you have any question or you want to submit your own map, don't hesitate to access to our [Community] (https://plus.google.com/communities/116804771459012895746).
