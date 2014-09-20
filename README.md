@@ -21,7 +21,8 @@ Game modes
 Screenshots
 -----------
 
-![Screenshot1](http://mauriciotogneri.com/images/small/screenshot01.jpg)
-![Screenshot2](http://mauriciotogneri.com/images/small/screenshot2.jpg)
+![Screenshot1](http://mauriciotogneri.com/images/small/screenshot_01.jpg)
+![Screenshot2](http://mauriciotogneri.com/images/small/screenshot_02.jpg)
+![Screenshot3](http://mauriciotogneri.com/images/small/screenshot_03.jpg)
 
 If you have any question or you want to submit your own map, don't hesitate to access to our [Community] (https://plus.google.com/communities/116804771459012895746).
