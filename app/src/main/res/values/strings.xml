@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="button_accept">Accept</string>
+    <string name="button_cancel">Cancel</string>
+
+    <string name="title_bar_initializing">Initializing</string>
+    <string name="title_bar_turn">Turn:</string>
+
+    <string name="main_bar_help">Help</string>
+
+    <string name="game_bar_restart_game">Restart Game</string>
+    <string name="game_bar_pass_turn">Pass Turn</string>
+
+    <string name="confirmation_restart_title">Restart Game</string>
+    <string name="confirmation_restart_message">\nDo you want to restart the game?\n</string>
+
+    <string name="confirmation_close_title">Exit game</string>
+    <string name="confirmation_close_message">\nDo you want to exit the game?\n</string>
+
+    <string name="dialog_help_main_menu">Main Menu</string>
+    <string name="dialog_help_main_menu_text_1">In this screen you can select the map for the game.</string>
+    <string name="dialog_help_main_menu_text_2">Use</string>
+    <string name="dialog_help_main_menu_text_3">to change the map.</string>
+    <string name="dialog_help_main_menu_text_4">A preview of the map will be shown on the screen.</string>
+    <string name="dialog_help_main_menu_text_5">After choosing the map, select the game mode:</string>
+    <string name="dialog_help_main_menu_text_6">Human vs. Computer</string>
+    <string name="dialog_help_main_menu_text_7">Human vs. Human (offline)</string>
+
+    <string name="dialog_help_game">How to Play</string>
+    <string name="dialog_help_game_text_1">The map is composed of interconnected stars.</string>
+    <string name="dialog_help_game_text_2">The first step is to select the star you want to begin with.</string>
+    <string name="dialog_help_game_text_3">Each player starts with 5 units placed in the initial star.</string>
+    <string name="dialog_help_game_text_4">In each turn, each player has 2 moves.</string>
+    <string name="dialog_help_game_text_5">To move units, select the source star and then select the target star where you want to move your units to.</string>
+    <string name="dialog_help_game_text_6">The target star has to be connected with the source star.</string>
+    <string name="dialog_help_game_text_7">If the target star is valid, select the number of units to move.</string>
+    <string name="dialog_help_game_text_8">If the target star is unoccupied, the moved units will conquer it with no resistance.</string>
+    <string name="dialog_help_game_text_9">If the target star belongs to an enemy, a battle will take place.</string>
+    <string name="dialog_help_game_text_10">Each star can be occupied by only one player and can contain up to 9 of that player\&apos;s units.</string>
+    <string name="dialog_help_game_text_11">At the end of each turn, each star which is linked to 2 or more of the same player\&apos;s stars will gain an extra unit.</string>
+    <string name="dialog_help_game_text_12">Press</string>
+    <string name="dialog_help_game_text_13">to pass the turn.</string>
+    <string name="dialog_help_game_text_14">The game ends when you defeat all the units of your enemies.</string>
+
+    <string name="dialog_units_title">Select number of units</string>
+
+    <string name="dialog_game_finished_blue">BLUE WINS</string>
+    <string name="dialog_game_finished_red">RED WINS</string>
+    <string name="dialog_game_finished_tie">TIE GAME</string>
+
+</resources>

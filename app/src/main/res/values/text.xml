@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AndWars</string>
+
+    <string name="move_units_1">1</string>
+    <string name="move_units_2">2</string>
+    <string name="move_units_3">3</string>
+    <string name="move_units_4">4</string>
+    <string name="move_units_5">5</string>
+    <string name="move_units_6">6</string>
+    <string name="move_units_7">7</string>
+    <string name="move_units_8">8</string>
+    <string name="move_units_9">9</string>
+
+</resources>

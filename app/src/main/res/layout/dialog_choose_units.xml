@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="10dp">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/units1"
+            style="@style/select_units_button"
+            android:text="@string/move_units_1"/>
+
+        <Button
+            android:id="@+id/units2"
+            style="@style/select_units_button"
+            android:text="@string/move_units_2"/>
+
+        <Button
+            android:id="@+id/units3"
+            style="@style/select_units_button"
+            android:text="@string/move_units_3"/>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/units4"
+            style="@style/select_units_button"
+            android:text="@string/move_units_4"/>
+
+        <Button
+            android:id="@+id/units5"
+            style="@style/select_units_button"
+            android:text="@string/move_units_5"/>
+
+        <Button
+            android:id="@+id/units6"
+            style="@style/select_units_button"
+            android:text="@string/move_units_6"/>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/units7"
+            style="@style/select_units_button"
+            android:text="@string/move_units_7"/>
+
+        <Button
+            android:id="@+id/units8"
+            style="@style/select_units_button"
+            android:text="@string/move_units_8"/>
+
+        <Button
+            android:id="@+id/units9"
+            style="@style/select_units_button"
+            android:text="@string/move_units_9"/>
+
+    </TableRow>
+
+</TableLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="button_accept">Accepter</string>
+    <string name="button_cancel">Annuler</string>
+
+    <string name="title_bar_initializing">Initialisation</string>
+    <string name="title_bar_turn">Tour:</string>
+
+    <string name="main_bar_help">Aide</string>
+
+    <string name="game_bar_restart_game">Redémarrer la partie</string>
+    <string name="game_bar_pass_turn">Passer son tour</string>
+
+    <string name="confirmation_restart_title">Redémarrer la partie</string>
+    <string name="confirmation_restart_message">\nVoulez-vous redémarrer la partie?\n</string>
+
+    <string name="confirmation_close_title">Quitter la partie</string>
+    <string name="confirmation_close_message">\nVoulez-vous quitter la partie?\n</string>
+
+    <string name="dialog_help_main_menu">Menu principal</string>
+    <string name="dialog_help_main_menu_text_1">Sur cette page vous pouvez choisir la carte de la partie.</string>
+    <string name="dialog_help_main_menu_text_2">Utiliser</string>
+    <string name="dialog_help_main_menu_text_3">pour changer la carte.</string>
+    <string name="dialog_help_main_menu_text_4">Une visualisation de la carte va être affichée sur cette écran.</string>
+    <string name="dialog_help_main_menu_text_5">Après avoir choisi la carte, sélectionnez le mode de jeu:</string>
+    <string name="dialog_help_main_menu_text_6">Humain vs. Ordinateur</string>
+    <string name="dialog_help_main_menu_text_7">Humain vs. Humain (hors ligne)</string>
+
+    <string name="dialog_help_game">Comment jouer</string>
+    <string name="dialog_help_game_text_1">La carte est composée d\'étoiles interconnectées.</string>
+    <string name="dialog_help_game_text_2">La première étape consiste à sélectionner l\'étoile avec laquelle vous souhaitez débuter.</string>
+    <string name="dialog_help_game_text_3">Chaque joueur commence avec 5 unités placées dans l\'étoile de départ.</string>
+    <string name="dialog_help_game_text_4">A chaque tour, chaque joueur a deux mouvements.</string>
+    <string name="dialog_help_game_text_5">Pour déplacer des unités, sélectionner une étoile de départ puis sélectionner l\'étoile vers laquelle vous souhaitez effectuer le déplacement.</string>
+    <string name="dialog_help_game_text_6">L\'étoile source doit être connectée avec l\'étoile cible.</string>
+    <string name="dialog_help_game_text_7">Si l\'étoile cible est valide, sélectionner le nombre d\'unités à déplacer.</string>
+    <string name="dialog_help_game_text_8">Si l\'étoile cible est inoccupée, les unités déplacées la conquerront sans résistance.</string>
+    <string name="dialog_help_game_text_9">Si l\'étoile cible appartient à un ennemi, une bataille prendra place.</string>
+    <string name="dialog_help_game_text_10">Chaque étoile ne peut être occupée que par un joueur. Elle peut contenir au maximum 9 unités de ce joueur.</string>
+    <string name="dialog_help_game_text_11">A la fin de chaque tour, chaque étoile étant connectée à au moins deux autres étoiles du même joueur gagneront une unité supplémentaire.</string>
+    <string name="dialog_help_game_text_12">Presser</string>
+    <string name="dialog_help_game_text_13">pour passer son tour.</string>
+    <string name="dialog_help_game_text_14">La partie prend fin lorsque vous avez battu toutes les unités de votre ennemi. </string>
+
+    <string name="dialog_units_title">Sélectionner le nombre d\'unités</string>
+
+    <string name="dialog_game_finished_blue">BLEU GAGNE</string>
+    <string name="dialog_game_finished_red">ROUGE GAGNE</string>
+    <string name="dialog_game_finished_tie">ÉGALITÉ</string>
+
+</resources>
