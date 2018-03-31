@@ -2,7 +2,6 @@ package com.mauriciotogneri.andwars.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -84,7 +83,7 @@ public class GameActivity extends Activity
         LayoutInflater inflater = LayoutInflater.from(this);
         View layout = inflater.inflate(R.layout.dialog_game_finished, null);
 
-        TextView message = (TextView) layout.findViewById(R.id.message);
+        TextView message = layout.findViewById(R.id.message);
         message.setText(result.getTextId());
         message.setTextColor(color);
 
@@ -128,14 +127,7 @@ public class GameActivity extends Activity
         builder.setIcon(android.R.drawable.ic_menu_info_details);
         builder.setMessage(R.string.confirmation_close_message);
 
-        builder.setPositiveButton(R.string.button_accept, new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int which)
-            {
-                finish();
-            }
-        });
+        builder.setPositiveButton(R.string.button_accept, (dialog, which) -> finish());
 
         builder.setNegativeButton(R.string.button_cancel, null);
 
@@ -158,14 +150,7 @@ public class GameActivity extends Activity
             builder.setIcon(android.R.drawable.ic_menu_info_details);
             builder.setMessage(R.string.confirmation_restart_message);
 
-            builder.setPositiveButton(R.string.button_accept, new DialogInterface.OnClickListener()
-            {
-                @Override
-                public void onClick(DialogInterface dialog, int which)
-                {
-                    restartGame();
-                }
-            });
+            builder.setPositiveButton(R.string.button_accept, (dialog, which) -> restartGame());
 
             builder.setNegativeButton(R.string.button_cancel, null);
 

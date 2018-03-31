@@ -1,17 +1,14 @@
 package com.mauriciotogneri.andwars.activities;
 
 import android.app.Application;
-import android.os.StrictMode;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.mauriciotogneri.andwars.R;
 
-import org.acra.ACRA;
-import org.acra.annotation.ReportsCrashes;
-import org.acra.sender.HttpSender.Type;
+import io.fabric.sdk.android.Fabric;
 
-@ReportsCrashes(formUri = "http://zeronest.com/acra/report.php", reportType = Type.FORM)
 public class AndWars extends Application
 {
     private Tracker tracker;
@@ -21,18 +18,7 @@ public class AndWars extends Application
     {
         super.onCreate();
 
-        ACRA.init(this);
-        ACRA.getErrorReporter().putCustomData("PACKAGE_NAME", getPackageName());
-
-        StrictMode.ThreadPolicy.Builder threadBuilder = new StrictMode.ThreadPolicy.Builder();
-        threadBuilder.detectAll();
-        threadBuilder.penaltyLog();
-        StrictMode.setThreadPolicy(threadBuilder.build());
-
-        StrictMode.VmPolicy.Builder vmBuilder = new StrictMode.VmPolicy.Builder();
-        vmBuilder.detectAll();
-        vmBuilder.penaltyLog();
-        StrictMode.setVmPolicy(vmBuilder.build());
+        Fabric.with(this, new Crashlytics());
 
         GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
         this.tracker = analytics.newTracker(R.xml.app_tracker);

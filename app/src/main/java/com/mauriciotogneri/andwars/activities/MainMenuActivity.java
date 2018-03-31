@@ -11,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -48,50 +47,22 @@ public class MainMenuActivity extends Activity implements MapListener
 
         this.maps.addAll(getMaps());
 
-        FrameLayout mapContainer = (FrameLayout) findViewById(R.id.map_container);
+        FrameLayout mapContainer = findViewById(R.id.map_container);
 
         this.mapRenderer = new MapRenderer(this, this);
         mapContainer.addView(this.mapRenderer, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
-        ImageButton mapPrevious = (ImageButton) findViewById(R.id.map_previous);
-        mapPrevious.setOnClickListener(new OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                previousMap();
-            }
-        });
+        ImageButton mapPrevious = findViewById(R.id.map_previous);
+        mapPrevious.setOnClickListener(v -> previousMap());
 
-        ImageButton mapNext = (ImageButton) findViewById(R.id.map_next);
-        mapNext.setOnClickListener(new OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                nextMap();
-            }
-        });
+        ImageButton mapNext = findViewById(R.id.map_next);
+        mapNext.setOnClickListener(v -> nextMap());
 
-        ImageButton startGameComputer = (ImageButton) findViewById(R.id.mainmenu_button_start_game_vs_computer);
-        startGameComputer.setOnClickListener(new OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                startGame(GameMode.VS_COMPUTER);
-            }
-        });
+        ImageButton startGameComputer = findViewById(R.id.mainmenu_button_start_game_vs_computer);
+        startGameComputer.setOnClickListener(view -> startGame(GameMode.VS_COMPUTER));
 
-        ImageButton startGameHuman = (ImageButton) findViewById(R.id.mainmenu_button_start_game_vs_human);
-        startGameHuman.setOnClickListener(new OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                startGame(GameMode.VS_HUMAN);
-            }
-        });
+        ImageButton startGameHuman = findViewById(R.id.mainmenu_button_start_game_vs_human);
+        startGameHuman.setOnClickListener(view -> startGame(GameMode.VS_HUMAN));
 
         updateMap();
 
@@ -100,16 +71,11 @@ public class MainMenuActivity extends Activity implements MapListener
 
     private void sendHitAppLaunched()
     {
-        Thread thread = new Thread(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                AndWars application = (AndWars) getApplication();
-                Tracker tracker = application.getTracker();
-                tracker.setScreenName("App Launched");
-                tracker.send(new HitBuilders.ScreenViewBuilder().build());
-            }
+        Thread thread = new Thread(() -> {
+            AndWars application = (AndWars) getApplication();
+            Tracker tracker = application.getTracker();
+            tracker.setScreenName("App Launched");
+            tracker.send(new HitBuilders.ScreenViewBuilder().build());
         });
         thread.start();
     }
@@ -149,7 +115,7 @@ public class MainMenuActivity extends Activity implements MapListener
     {
         Map map = getSelectedMap();
 
-        TextView mapName = (TextView) findViewById(R.id.map_name);
+        TextView mapName = findViewById(R.id.map_name);
         mapName.setText(map.toString());
 
         updateMap(map);
@@ -246,15 +212,10 @@ public class MainMenuActivity extends Activity implements MapListener
         final Map map = getSelectedMap();
 
         Handler handler = new Handler();
-        handler.post(new Runnable()
-        {
-            @Override
-            public void run()
+        handler.post(() -> {
+            if (map != null)
             {
-                if (map != null)
-                {
-                    updateMap(map);
-                }
+                updateMap(map);
             }
         });
 
