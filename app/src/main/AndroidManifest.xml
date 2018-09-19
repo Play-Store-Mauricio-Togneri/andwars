@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name=".activities.AndWars"
         android:allowBackup="false"
         android:fullBackupContent="false"
         android:icon="@drawable/app_icon"
@@ -29,10 +28,6 @@
             android:name=".activities.GameActivity"
             android:keepScreenOn="true"
             android:screenOrientation="portrait"/>
-
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="8cffce1302373dfaa1df9a1eaa9097d3bf4520fc"/>
 
     </application>
 

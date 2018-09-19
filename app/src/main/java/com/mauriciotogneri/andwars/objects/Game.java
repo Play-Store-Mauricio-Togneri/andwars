@@ -2,9 +2,6 @@ package com.mauriciotogneri.andwars.objects;
 
 import android.graphics.Color;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.HitBuilders.EventBuilder;
-import com.google.android.gms.analytics.Tracker;
 import com.mauriciotogneri.andwars.R;
 import com.mauriciotogneri.andwars.objects.players.Player;
 import com.mauriciotogneri.andwars.states.Initialization;
@@ -21,7 +18,6 @@ public class Game
     private final List<Player> players;
     private GameRenderer gameRenderer;
     private TurnManager turnManager;
-    private final Tracker tracker;
 
     private boolean started = false;
     private boolean finished = false;
@@ -59,7 +55,7 @@ public class Game
         }
     }
 
-    public Game(GameMode mode, Map map, List<Player> players, Tracker tracker)
+    public Game(GameMode mode, Map map, List<Player> players)
     {
         this.mode = mode;
         this.map = map;
@@ -69,8 +65,6 @@ public class Game
         {
             player.initialize(this);
         }
-
-        this.tracker = tracker;
     }
 
     public void setGameRenderer(GameRenderer gameRenderer)
@@ -81,8 +75,6 @@ public class Game
 
     public void start()
     {
-        sendHit(GameAction.START);
-
         this.started = true;
         this.finished = false;
 
@@ -94,8 +86,6 @@ public class Game
 
     public void restart()
     {
-        sendHit(GameAction.RESTART);
-
         this.finished = false;
 
         lockScreen();
@@ -230,44 +220,6 @@ public class Game
         {
             this.turnManager.passTurn();
         }
-    }
-
-    public void close()
-    {
-        sendHit(GameAction.CLOSE);
-    }
-
-    private void sendHit(final GameAction action)
-    {
-        final String mapName = this.map.toString();
-
-        Thread threadMapName = new Thread(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                EventBuilder builder = new HitBuilders.EventBuilder();
-                builder.setCategory(mapName);
-                builder.setAction(action.toString());
-
-                Game.this.tracker.send(builder.build());
-            }
-        });
-        threadMapName.start();
-
-        Thread threadGameMode = new Thread(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                EventBuilder builder = new HitBuilders.EventBuilder();
-                builder.setCategory(Game.this.mode.toString());
-                builder.setAction(action.toString());
-
-                Game.this.tracker.send(builder.build());
-            }
-        });
-        threadGameMode.start();
     }
 
     public interface OnCellSelected

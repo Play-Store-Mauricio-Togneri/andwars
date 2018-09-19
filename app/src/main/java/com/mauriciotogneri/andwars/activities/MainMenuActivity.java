@@ -17,8 +17,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import com.mauriciotogneri.andwars.R;
 import com.mauriciotogneri.andwars.objects.Game.GameMode;
 import com.mauriciotogneri.andwars.objects.Map;
@@ -65,19 +63,6 @@ public class MainMenuActivity extends Activity implements MapListener
         startGameHuman.setOnClickListener(view -> startGame(GameMode.VS_HUMAN));
 
         updateMap();
-
-        sendHitAppLaunched();
-    }
-
-    private void sendHitAppLaunched()
-    {
-        Thread thread = new Thread(() -> {
-            AndWars application = (AndWars) getApplication();
-            Tracker tracker = application.getTracker();
-            tracker.setScreenName("App Launched");
-            tracker.send(new HitBuilders.ScreenViewBuilder().build());
-        });
-        thread.start();
     }
 
     private void previousMap()

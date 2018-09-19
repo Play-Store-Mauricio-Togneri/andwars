@@ -12,7 +12,6 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.google.android.gms.analytics.Tracker;
 import com.mauriciotogneri.andwars.R;
 import com.mauriciotogneri.andwars.objects.Game;
 import com.mauriciotogneri.andwars.objects.Game.GameMode;
@@ -170,7 +169,6 @@ public class GameActivity extends Activity
     {
         if ((this.game != null) && (this.game.isFinished()))
         {
-            this.game.close();
             finish();
         }
         else
@@ -237,9 +235,6 @@ public class GameActivity extends Activity
 
     private Game createGame(GameMode mode, String mapName)
     {
-        AndWars application = (AndWars) getApplication();
-        Tracker tracker = application.getTracker();
-
         Map map = new Map(mapName, this);
 
         List<Player> players = new ArrayList<>();
@@ -256,6 +251,6 @@ public class GameActivity extends Activity
                 break;
         }
 
-        return new Game(mode, map, players, tracker);
+        return new Game(mode, map, players);
     }
 }
